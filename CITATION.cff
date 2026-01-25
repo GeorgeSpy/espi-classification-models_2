@@ -1,0 +1,27 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it as below."
+type: software
+title: "ESPI Mode Classification Models"
+version: 1.0.0
+date-released: 2026-01-01
+authors:
+  - family-names: "Spyropoulos"
+    given-names: "Georgios"
+    orcid: "https://orcid.org/0009-0004-0866-0107"
+    affiliation: "Hellenic Mediterranean University, Department of Music Technology and Acoustics"
+abstract: >-
+  Hybrid Random Forest and CNN models for automatic modal classification
+  of ESPI (Electronic Speckle Pattern Interferometry) images in musical
+  instrument quality control. Achieves 97.85% accuracy on bouzouki
+  soundboard vibration mode classification. MSc Thesis research.
+keywords:
+  - ESPI
+  - modal analysis
+  - machine learning
+  - random forest
+  - musical acoustics
+  - quality control
+  - bouzouki
+  - vibration analysis
+license: MIT
+repository-code: "https://github.com/GeorgeSpy/espi-classification-models_2"
