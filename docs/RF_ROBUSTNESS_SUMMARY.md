@@ -1,8 +1,8 @@
 # RF Robustness Analysis - Executive Summary
 
-## 🎯 **ΕΝΟΤΗΤΑ 4.5: ROBUSTNESS ANALYSIS για PatternOnly Random Forest**
+##  ROBUSTNESS ANALYSIS για PatternOnly Random Forest**
 
-### 📊 **ΚΥΡΙΑ ΑΠΟΤΕΛΕΣΜΑΤΑ**
+###  **ΚΥΡΙΑ ΑΠΟΤΕΛΕΣΜΑΤΑ**
 
 **PatternOnly Random Forest Performance:**
 - **Accuracy:** 90.15% (95% CI: 89.14% - 91.05%)
@@ -16,7 +16,7 @@
 
 ---
 
-## 🔬 **4.5.1 STATISTICAL SIGNIFICANCE TESTING**
+##  ** STATISTICAL SIGNIFICANCE TESTING**
 
 ### Bootstrap Confidence Intervals
 - **Accuracy:** 90.15% ± 0.96% (tight confidence interval)
@@ -24,13 +24,13 @@
 - **Cross-Validation Stability:** σ² = 0.0008 (excellent stability)
 
 ### Key Findings
-✅ **Highly significant improvement** over baseline (p < 0.001)  
-✅ **Large effect size** (Cohen's d = 2.34)  
-✅ **Excellent cross-validation stability** across 3-fold SGKFold  
+ **Highly significant improvement** over baseline (p < 0.001)  
+ **Large effect size** (Cohen's d = 2.34)  
+ **Excellent cross-validation stability** across 3-fold SGKFold  
 
 ---
 
-## 🧬 **4.5.2 FEATURE IMPORTANCE ANALYSIS**
+## 🧬 ** FEATURE IMPORTANCE ANALYSIS**
 
 ### Top-5 Most Important Features
 1. **freq_hz.1:** 55.98% (frequency information - dominant predictor)
@@ -53,7 +53,7 @@
 
 ---
 
-## 📈 **4.5.3 CROSS-VALIDATION STABILITY**
+##  ** CROSS-VALIDATION STABILITY**
 
 ### 3-Fold StratifiedGroupKFold Results
 | Fold | Accuracy | Macro-F1 | Weighted-F1 |
@@ -70,7 +70,7 @@
 
 ---
 
-## 🔍 **4.5.4 ERROR ANALYSIS & CONFUSION PATTERNS**
+##  ** ERROR ANALYSIS & CONFUSION PATTERNS**
 
 ### Key Error Patterns
 1. **Minority Class Confusion:**
@@ -94,7 +94,7 @@
 
 ---
 
-## 🌐 **4.5.5 GENERALIZATION ANALYSIS**
+##  ** GENERALIZATION ANALYSIS**
 
 ### Leave-One-Dataset-Out (LODO)
 | Test Dataset | Accuracy | Macro-F1 | Interpretation |
@@ -112,7 +112,7 @@
 
 ---
 
-## ⚡ **4.5.6 COMPUTATIONAL EFFICIENCY**
+##  ** COMPUTATIONAL EFFICIENCY**
 
 ### Performance Metrics
 - **Training Time:** ~45 seconds (3,443 samples, 16 features)
@@ -128,7 +128,7 @@
 
 ---
 
-## 🎯 **ΣΥΝΟΨΗ & ΣΥΜΠΕΡΑΣΜΑΤΑ**
+## **ΣΥΝΟΨΗ & ΣΥΜΠΕΡΑΣΜΑΤΑ**
 
 ### ✅ **ΚΥΡΙΕΣ ΔΥΝΑΜΕΣ**
 1. **Στατιστική αξιοπιστία:** 90.15% accuracy με στενά confidence intervals
@@ -136,12 +136,12 @@
 3. **Cross-validation stability:** Εξαιρετική σταθερότητα (CV variance σ² = 0.0008)
 4. **Υπολογιστική αποδοτικότητα:** 18.75× γρηγορότερο από CNN
 
-### ⚠️ **ΠΕΡΙΟΡΙΣΜΟΙ**
+###  **ΠΕΡΙΟΡΙΣΜΟΙ**
 1. **Class imbalance:** Υψηλό misclassification rate σε minority classes (69% για mode_(1,1)H)
 2. **Frequency dependency:** 55.98% importance στο freq_hz.1 (δεν μαθαίνει pure morphological patterns)
 3. **Dataset generalization:** Φτωχή γενίκευση στο W02 dataset (15.3% accuracy)
 
-### 🔬 **ΕΠΙΣΤΗΜΟΝΙΚΕΣ ΣΥΜΒΑΣΕΙΣ**
+###  **ΕΠΙΣΤΗΜΟΝΙΚΕΣ ΣΥΜΒΑΣΕΙΣ**
 - **Computationally efficient** και statistically robust μέθοδος
 - **90.15% accuracy** με interpretability μέσω feature importance
 - **Comprehensive evaluation** σε multiple dimensions
@@ -149,34 +149,10 @@
 
 ---
 
-## 📁 **ΔΗΜΙΟΥΡΓΗΘΕΝΤΑ ΑΡΧΕΙΑ**
 
-### 📄 **Reports & Analysis**
-- `SECTION_4_5_RF_ROBUSTNESS_ANALYSIS.md` - Πλήρης επιστημονική ανάλυση
-- `RF_ROBUSTNESS_SUMMARY.md` - Executive summary
 
-### 📊 **Figures & Visualizations**
-- `confusion_matrix_pattern_only.png` - Normalized confusion matrix
-- `feature_importance_pattern_only.png` - Feature importance bar plot
-- `bootstrap_confidence_intervals.png` - Bootstrap CI visualization
-- `lodo_analysis.png` - Leave-One-Dataset-Out analysis
-- `lobo_frequency_analysis.png` - Leave-One-Bin-Out by frequency
-- `feature_stability_analysis.png` - Feature stability across seeds
 
-### 📋 **Tables & Data**
-- `per_class_performance.csv` - Per-class metrics
-- `per_class_performance_table.md` - Formatted markdown table
 
----
 
-## 🚀 **ΕΠΟΜΕΝΑ ΒΗΜΑΤΑ**
-
-1. **Integration στο thesis:** Copy-paste την ενότητα 4.5 στο κύριο κείμενο
-2. **Figure integration:** Include όλα τα figures στο thesis document
-3. **Table integration:** Include performance tables στο results section
-4. **Citation preparation:** Prepare references για statistical methods
-5. **Discussion section:** Connect με broader implications για vibration analysis
-
-**Η ενότητα 4.5 είναι έτοιμη για integration στο thesis!** 🎉
 
 
