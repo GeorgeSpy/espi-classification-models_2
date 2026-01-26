@@ -41,7 +41,7 @@ See **REPRODUCE.md**.
 If you use this code in your research, please cite:
 
 ```bibtex
-@mastersthesis{spyropoulos2026espi,
+@mastersthesis{spyridakis2026espi,
   author       = {Spyridakis, Georgios},
   title        = {Automatic Modal Classification of {ESPI} Images for Musical Instrument Quality Control},
   school       = {Hellenic Mediterranean University, Department of Music Technology and Acoustics},
