@@ -1,6 +1,6 @@
-# 4.5 Robustness Analysis for PatternOnly Random Forest
+#  Robustness Analysis for PatternOnly Random Forest
 
-## 4.5.1 Statistical Significance Testing
+##  Statistical Significance Testing
 
 ### Bootstrap Confidence Intervals
 The PatternOnly Random Forest model was evaluated using bootstrap resampling (n=1000) to establish statistical confidence intervals for key performance metrics:
@@ -23,7 +23,7 @@ The model demonstrated excellent stability across 3-fold StratifiedGroupKFold cr
 - **Fold-to-fold consistency:** 89.2% - 91.1% accuracy range
 - **Grouped CV:** StratifiedGroupKFold ensures balanced representation across datasets and frequency bins
 
-## 4.5.2 Feature Importance Analysis
+##  Feature Importance Analysis
 
 ### Top-10 Most Important Features (PatternOnly RF)
 
@@ -59,7 +59,7 @@ Cross-seed feature importance stability was evaluated across 5 different random 
 
 The stability analysis confirms that the top features maintain their importance across different random initializations, indicating robust feature selection.
 
-## 4.5.3 Cross-Validation Stability
+##  Cross-Validation Stability
 
 ### 3-Fold StratifiedGroupKFold Results
 
@@ -82,7 +82,7 @@ The model shows varying stability across different classes:
 - **other_unknown:** 98.6% recall (consistent performance)
 - **mode_(1,2):** 67.0% recall (most variable class)
 
-## 4.5.4 Error Analysis & Confusion Patterns
+##  Error Analysis & Confusion Patterns
 
 ### Confusion Matrix Analysis (PatternOnly RF)
 
@@ -125,7 +125,7 @@ other        3      9     13      0       0    1769    ← 98.6% correct
 | mode_higher | 100% | 100% | 100% | 1,115 | 0% |
 | other_unknown | 85.7% | 98.6% | 91.7% | 1,794 | 1.4% |
 
-## 4.5.5 Generalization Analysis
+##  Generalization Analysis
 
 ### Leave-One-Dataset-Out (LODO) Analysis
 The model's generalization across different datasets was evaluated:
@@ -159,7 +159,7 @@ Frequency bin generalization was evaluated across 5Hz frequency bins:
 - Poor generalization occurs in frequency regions with limited training samples
 - The model shows strong generalization to high-frequency bins (>715 Hz)
 
-## 4.5.6 Negative Control Analysis
+##  Negative Control Analysis
 
 ### Label Shuffle Test
 To verify the absence of hidden data leakage, labels were randomly shuffled and the model was retrained:
@@ -175,7 +175,7 @@ Cross-seed feature importance correlation analysis:
 - **Consistently stable features:** 10 out of 16 features
 - **Top stable features:** freq_hz.1, diag_ratio, valid_px, lapz, grad_cv
 
-## 4.5.7 Computational Efficiency
+##  Computational Efficiency
 
 ### Training Performance
 - **Algorithm:** Random Forest (600 estimators)
@@ -205,7 +205,7 @@ Cross-seed feature importance correlation analysis:
 - **RF Memory:** 50MB vs CNN: ~200MB
 - **RF Advantage:** 18.75× faster inference
 
-## 4.5.8 Summary and Conclusions
+##  Summary and Conclusions
 
 ### Key Findings
 
