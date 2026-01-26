@@ -42,7 +42,7 @@ If you use this code in your research, please cite:
 
 ```bibtex
 @mastersthesis{spyropoulos2026espi,
-  author       = {Spyropoulos, Georgios},
+  author       = {Spyridakis, Georgios},
   title        = {Automatic Modal Classification of {ESPI} Images for Musical Instrument Quality Control},
   school       = {Hellenic Mediterranean University, Department of Music Technology and Acoustics},
   year         = {2026},
