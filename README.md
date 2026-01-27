@@ -15,26 +15,34 @@
 
 **Performance (Standard split)**
 | Model | Accuracy | Macro-F1 |
-|------|----------|----------|
+|---|---:|---:|
 | **Hybrid RF (Winner)** | **97.85%** | **95.15%** |
 | Pattern-only RF | 90.15% | 69.91% |
 | CNN (reference) | 93.76% | 88.11% |
 
 **Robustness**
-- **LOBO Accuracy:** **91.83% ± 8.9%**
-- **LODO Accuracy:** **66.31% ± 44.11%**
-- **CNN MC-LOBO pct20:** **67.68% ± 2.2%** Acc, **61.60% ± 4.4%** Macro-F1
+- **LOBO Accuracy:** **91.83% ± 8.9%** (Robustness Protocol)
+- **LODO Accuracy:** **66.31% ± 44.11%** (Robustness Protocol)
+- **CNN MC-LOBO pct20:** **67.68% ± 2.2%** (Stress-Test)
+> *Note: MC-LOBO is an exploratory stress-test used to evaluate domain shift difficulty, not an official thesis KPI.*
 
 ---
 
 ## Quickstart
+
 ```bash
+# Windows (PowerShell / CMD)
 python -m venv .venv
 .venv\Scripts\activate
 pip install -r requirements.txt
+
+# Linux/macOS
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
 ```
 
-See **REPRODUCE.md**.
+See **REPRODUCE.md** for exact commands.
 
 ## Citation
 

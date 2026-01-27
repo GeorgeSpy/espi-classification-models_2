@@ -4,21 +4,23 @@ This document describes how to reproduce the results from the thesis.
 
 ## Prerequisites
 
+### A. Environment Setup
+
 ```bash
 # Create virtual environment
+# Windows:
 python -m venv .venv
-
-# Activate (Windows)
 .venv\Scripts\activate
 
-# Activate (Linux/Mac)
+# Linux/macOS:
+python3 -m venv .venv
 source .venv/bin/activate
 
 # Install dependencies
 pip install -r requirements.txt
 ```
 
-## Dataset
+### B. Dataset Contract
 
 The dataset is not included in this repository due to size constraints.
 Contact the author for access to the ESPI measurement data.
@@ -27,11 +29,16 @@ Expected structure:
 ```
 data/
 ├── features/
-│   └── labels_features.csv    # Combined features and labels
-└── raw/                       # Raw ESPI measurements (optional)
+│   └── labels_features.csv    # Combined features and labels for RF
+├── raw/                       # Raw ESPI measurements (images) for CNN
+│   ├── clean/                 # Reference clean images
+│   └── noisy/                 # Noisy inputs
+└── splits/                    # (Optional) Pre-defined split indices
 ```
 
-## 1) Train Hybrid RF (Main Model)
+## 1. Reproduce Hybrid RF (Main Model)
+
+**Goal:** Train and evaluate the Random Forest Hybrid model (Accuracy: 97.85%).
 
 ```bash
 python src/rf_train_complete.py \
@@ -40,46 +47,65 @@ python src/rf_train_complete.py \
     --n-estimators 100 \
     --seed 42
 ```
+*Output: Metrics saved to `results/rf_hybrid/metrics.json`*
 
-Expected output: **97.85% accuracy**, **95.15% Macro-F1**
+## 2. Reproduce Pattern-only RF
 
-## 2) Robustness Evaluation (LOBO/LODO)
+**Goal:** Train baseline Pattern-only model (Accuracy: 90.15%).
 
 ```bash
+python src/rf_train_complete.py \
+    --data data/features/labels_features.csv \
+    --output results/rf_pattern \
+    --features pattern_only \
+    --n-estimators 100 \
+    --seed 42
+```
+
+## 3. Reproduce CNN Baseline (ResNet-18)
+
+**Goal:** Train CNN reference model (Accuracy: 93.76%).
+
+```bash
+python src/train_espi_cnn_baselines.py \
+    --data-root data/raw \
+    --output-dir results/cnn_baseline \
+    --arch resnet18 \
+    --epochs 50 \
+    --batch-size 32
+```
+
+## 4. Robustness Evaluation (LOBO/LODO)
+
+**Goal:** Verify model stability across frequencies and datasets.
+
+```bash
+# Run LOBO and LODO analysis
 python src/rf_lodo_lobo.py \
     --data data/features/labels_features.csv \
     --output results/robustness \
     --bin-width 5 \
     --n-estimators 600
 ```
+*Expected Outputs:*
+- **LOBO:** ~91.8% Accuracy
+- **LODO:** ~66.3% Accuracy (High variance is expected)
 
-Expected outputs:
-- **LOBO:** 91.83% ± 8.9% accuracy
-- **LODO:** 66.31% ± 44.11% accuracy
+## 5. MC-LOBO Stress Test (Exploratory)
 
-## 3) Robustness Analysis & Figures
+> **Note:** This is a stress-test for domain shift, not a primary performance metric.
 
 ```bash
-python src/rf_robustness_analysis.py \
-    --data data/features/labels_features.csv \
-    --output results/analysis
+python src/train_espi_cnn_baselines.py \
+    --mode mc-lobo \
+    --data-root data/raw \
+    --output-dir results/cnn_mclobo
+```
 
+## 6. Generate Figures
+
+```bash
 python src/create_rf_robustness_figures.py \
     --results results/robustness \
     --output figures/
 ```
-
-## Key Parameters
-
-| Parameter | Value | Notes |
-|-----------|-------|-------|
-| `n_estimators` | 100-600 | Higher for robustness tests |
-| `class_weight` | balanced | Handles 30.9:1 imbalance |
-| `random_state` | 42 | For reproducibility |
-| `test_size` | 0.2 | Standard 80/20 split |
-| `bin_width` | 5 Hz | LOBO frequency bins |
-
-## Verified Results
-
-All KPIs in README.md have been verified with these scripts.
-See `docs/` for detailed analysis documentation.
