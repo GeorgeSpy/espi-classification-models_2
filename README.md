@@ -31,11 +31,20 @@
 ## Quickstart
 
 ```bash
-# Windows (PowerShell / CMD)
+# Windows (PowerShell)
 python -m venv .venv
-.venv\Scripts\activate
+.\.venv\Scripts\Activate.ps1
 pip install -r requirements.txt
+```
 
+```bat
+:: Windows (CMD)
+python -m venv .venv
+.\.venv\Scripts\activate.bat
+pip install -r requirements.txt
+```
+
+```bash
 # Linux/macOS
 python3 -m venv .venv
 source .venv/bin/activate

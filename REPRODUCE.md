@@ -7,16 +7,23 @@ This document describes how to reproduce the results from the thesis.
 ### A. Environment Setup
 
 ```bash
-# Create virtual environment
-# Windows:
+# Windows (PowerShell)
 python -m venv .venv
-.venv\Scripts\activate
+.\.venv\Scripts\Activate.ps1
+pip install -r requirements.txt
+```
 
-# Linux/macOS:
+```bat
+:: Windows (CMD)
+python -m venv .venv
+.\.venv\Scripts\activate.bat
+pip install -r requirements.txt
+```
+
+```bash
+# Linux/macOS
 python3 -m venv .venv
 source .venv/bin/activate
-
-# Install dependencies
 pip install -r requirements.txt
 ```
 
