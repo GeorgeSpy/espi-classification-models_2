@@ -28,6 +28,26 @@
 
 ---
 
+## 📁 Data Availability
+
+⚠️ **The raw ESPI measurement data is not included** in this repository due to size constraints.
+
+### To reproduce results:
+
+1. **Contact the author** for access to the ESPI dataset (PhaseOut folders: W01/W02/W03)
+2. **Generate the dataset CSV**:
+   ```bash
+   python src/make_espi_labels_csv.py generate --roots [your_data_paths]
+   ```
+3. Run training scripts as described in REPRODUCE.md
+
+## Related Repository
+
+For ESPI image preprocessing and denoising (DnCNN-ECA), see:
+- [ESPI-DnCNN-ECA](https://github.com/GeorgeSpy/ESPI-DnCNN-ECA) (if exists)
+
+---
+
 ## Quickstart
 
 ```bash

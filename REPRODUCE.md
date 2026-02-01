@@ -4,44 +4,17 @@ This document describes how to reproduce the results from the thesis.
 
 ## Prerequisites
 
-### A. Environment Setup
+### Dataset Preparation
 
-```bash
-# Windows (PowerShell)
-python -m venv .venv
-.\.venv\Scripts\Activate.ps1
-pip install -r requirements.txt
-```
+The ESPI measurement data is **not included** in this repository. Before running any scripts:
 
-```bat
-:: Windows (CMD)
-python -m venv .venv
-.\.venv\Scripts\activate.bat
-pip install -r requirements.txt
-```
-
-```bash
-# Linux/macOS
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
-### B. Dataset Contract
-
-The dataset is not included in this repository due to size constraints.
-Contact the author for access to the ESPI measurement data.
-
-Expected structure:
-```
-data/
-├── features/
-│   └── labels_features.csv    # Combined features and labels for RF
-├── raw/                       # Raw ESPI measurements (images) for CNN
-│   ├── clean/                 # Reference clean images
-│   └── noisy/                 # Noisy inputs
-└── splits/                    # (Optional) Pre-defined split indices
-```
+1. Obtain the raw ESPI data (W01/W02/W03 PhaseOut folders)
+2. Generate labels CSV:
+   ```bash
+   python src/make_espi_labels_csv.py generate \
+     --roots path/to/W01_PhaseOut path/to/W02_PhaseOut path/to/W03_PhaseOut \
+     --out_csv data/labels_images.csv
+   ```
 
 ## 1. Reproduce Hybrid RF (Main Model)
 
@@ -102,11 +75,12 @@ python src/rf_lodo_lobo.py \
 
 > **Note:** This is a stress-test for domain shift, not a primary performance metric.
 
+### CNN MC-LOBO Stress Testing
+
+For the CNN stress-test mentioned in the thesis (67.68% ± 2.2%):
+
 ```bash
-python src/train_espi_cnn_baselines.py \
-    --mode mc-lobo \
-    --data-root data/raw \
-    --output-dir results/cnn_mclobo
+python src/train_espi_cnn_baselines_mclobo.py --labels_csv data/labels_images.csv --run_dir results/cnn_mclobo
 ```
 
 ## 6. Generate Figures
