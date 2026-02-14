@@ -30,7 +30,7 @@
 
 ---
 
-## 🧬 ** FEATURE IMPORTANCE ANALYSIS**
+##  ** FEATURE IMPORTANCE ANALYSIS**
 
 ### Top-5 Most Important Features
 1. **freq_hz.1:** 55.98% (frequency information - dominant predictor)
@@ -103,7 +103,7 @@
 | W02 | 15.3% | 8.2% | Poor generalization |
 | W03 | 100% | 100% | Perfect generalization |
 
-### Leave-One-Bin-Out (LOBO)
+### Leave-One-Band-Out (LOBO)
 - **High Performance Bins:** 100% accuracy for most frequency ranges
 - **Challenging Bins:** Poor performance in specific frequency regions
   - 150-155 Hz: 0% accuracy (mode_(1,1)H region)
@@ -130,7 +130,7 @@
 
 ## **ΣΥΝΟΨΗ & ΣΥΜΠΕΡΑΣΜΑΤΑ**
 
-### ✅ **ΚΥΡΙΕΣ ΔΥΝΑΜΕΣ**
+###  **ΚΥΡΙΕΣ ΔΥΝΑΜΕΣ**
 1. **Στατιστική αξιοπιστία:** 90.15% accuracy με στενά confidence intervals
 2. **Feature importance:** Συμμετρία features συμβάλλουν 7.58% στην απόφαση
 3. **Cross-validation stability:** Εξαιρετική σταθερότητα (CV variance σ² = 0.0008)
