@@ -141,7 +141,7 @@ The model's generalization across different datasets was evaluated:
 - **W01:** Good generalization (83.7% accuracy)
 - **W02:** Poor generalization (15.3% accuracy) - indicates dataset-specific patterns
 
-### Leave-One-Bin-Out (LOBO) Analysis
+### Leave-One-Band-Out (LOBO) Analysis
 Frequency bin generalization was evaluated across 5Hz frequency bins:
 
 **High Performance Bins (100% accuracy):**
