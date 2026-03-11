@@ -71,6 +71,26 @@ def run_command(cmd: list, description: str) -> bool:
         return False
 
 
+def validate_required_helper_scripts(scripts_dir: Path) -> bool:
+    """Validate helper scripts required by this orchestration workflow."""
+    required_scripts = [
+        "phase_nodal_features_min.py",
+        "merge_all_features.py",
+        "simple_dedup.py",
+        "create_numeric_features.py",
+        "create_labels_corrected.py",
+    ]
+    missing_paths = [scripts_dir / name for name in required_scripts if not (scripts_dir / name).exists()]
+    if not missing_paths:
+        return True
+
+    print("[!] Missing required helper scripts:")
+    for missing_path in missing_paths:
+        print(f"    - {missing_path}")
+    print("[!] This orchestration script depends on helper scripts not included in the public repository.")
+    print("[!] Use --scripts-dir to point to your private helper scripts directory.")
+    return False
+
 def run_features_extraction(phase_root: Path, dataset_name: str, 
                            scripts_dir: Path) -> bool:
     """Run features extraction for a dataset."""
@@ -136,7 +156,7 @@ def run_labels_creation(output_dir: Path, scripts_dir: Path) -> bool:
     """Run labels creation."""
     script = scripts_dir / "create_labels_corrected.py"
     if not script.exists():
-        print(f"⚠️  Script not found: {script}")
+        print(f"[!] Script not found: {script}")
         return False
     
     cmd = [
@@ -173,6 +193,10 @@ def main():
     print("=" * 60)
     print("FEATURES & RF TRAINING PIPELINE")
     print("=" * 60)
+
+    if not validate_required_helper_scripts(args.scripts_dir):
+        sys.exit(1)
+
     
     start_time = time.time()
     
