@@ -39,7 +39,7 @@ def parse_args():
     parser.add_argument(
         "--scripts-dir",
         type=Path,
-        default=Path("scripts"),
+        default=Path(__file__).resolve().parent,
         help="Directory containing pipeline scripts"
     )
     return parser.parse_args()
@@ -47,7 +47,7 @@ def parse_args():
 
 def run_command(cmd: list, description: str) -> bool:
     """Run a command and return success status."""
-    print(f"🔄 {description}...")
+    print(f"[*] {description}...")
     
     try:
         result = subprocess.run(
@@ -59,15 +59,15 @@ def run_command(cmd: list, description: str) -> bool:
         )
         
         if result.returncode == 0:
-            print(f"✅ {description} - SUCCESS")
+            print(f"[+] {description} - SUCCESS")
             return True
         else:
-            print(f"❌ {description} - FAILED")
+            print(f"[-] {description} - FAILED")
             print(f"   Error: {result.stderr[:200]}...")
             return False
             
     except Exception as e:
-        print(f"❌ {description} - EXCEPTION: {str(e)}")
+        print(f"[-] {description} - EXCEPTION: {str(e)}")
         return False
 
 
@@ -75,12 +75,12 @@ def run_features_extraction(phase_root: Path, dataset_name: str,
                            scripts_dir: Path) -> bool:
     """Run features extraction for a dataset."""
     if not phase_root.exists():
-        print(f"❌ Phase root not found: {phase_root}")
+        print(f"[-] Phase root not found: {phase_root}")
         return False
     
     script = scripts_dir / "phase_nodal_features_min.py"
     if not script.exists():
-        print(f"⚠️  Script not found: {script}")
+        print(f"[!] Script not found: {script}")
         return False
     
     cmd = [sys.executable, str(script), "--band-root", str(phase_root)]
@@ -92,7 +92,7 @@ def run_merge_features(data_roots: list, output_dir: Path,
     """Run features merging for all datasets."""
     script = scripts_dir / "merge_all_features.py"
     if not script.exists():
-        print(f"⚠️  Script not found: {script}")
+        print(f"[!] Script not found: {script}")
         return False
     
     cmd = [
@@ -155,7 +155,7 @@ def run_final_rf_training(output_dir: Path, scripts_dir: Path) -> bool:
         script = Path(__file__).parent / "rf_train_complete.py"
     
     if not script.exists():
-        print(f"⚠️  No training script found")
+        print(f"[!] No training script found")
         return False
     
     cmd = [
@@ -171,7 +171,7 @@ def main():
     args = parse_args()
     
     print("=" * 60)
-    print("🧮 FEATURES & RF TRAINING PIPELINE")
+    print("FEATURES & RF TRAINING PIPELINE")
     print("=" * 60)
     
     start_time = time.time()
@@ -182,7 +182,7 @@ def main():
     features_dir.mkdir(exist_ok=True)
     
     # Step 1: Features extraction for each dataset
-    print("\n📊 Step 1: Features Extraction")
+    print("\n[ ] Step 1: Features Extraction")
     features_success = 0
     for data_root in args.data_roots:
         dataset_name = data_root.name
@@ -190,36 +190,36 @@ def main():
             features_success += 1
     
     if features_success != len(args.data_roots):
-        print(f"⚠️  Only {features_success}/{len(args.data_roots)} datasets processed")
+        print(f"[!] Only {features_success}/{len(args.data_roots)} datasets processed")
     
     # Step 2: Merge features
-    print("\n🔗 Step 2: Features Merging")
+    print("\n[ ] Step 2: Features Merging")
     if not run_merge_features(args.data_roots, features_dir, args.scripts_dir):
-        print("⚠️  Merge step skipped or failed")
+        print("[!] Merge step skipped or failed")
     
     # Step 3: Dedup and numeric
-    print("\n🔧 Step 3: Deduplication & Numeric Features")
+    print("\n[ ] Step 3: Deduplication & Numeric Features")
     if not run_dedup_and_numeric(features_dir, args.scripts_dir):
-        print("⚠️  Dedup/numeric step skipped or failed")
+        print("[!] Dedup/numeric step skipped or failed")
     
     # Step 4: Labels creation
-    print("\n🏷️  Step 4: Labels Creation")
+    print("\n[ ] Step 4: Labels Creation")
     if not run_labels_creation(features_dir, args.scripts_dir):
-        print("⚠️  Labels step skipped or failed")
+        print("[!] Labels step skipped or failed")
     
     # Step 5: Final RF training
-    print("\n🌲 Step 5: Final RF Training")
+    print("\n[ ] Step 5: Final RF Training")
     if not run_final_rf_training(features_dir, args.scripts_dir):
-        print("⚠️  Training step skipped or failed")
+        print("[!] Training step skipped or failed")
     
     # Summary
     end_time = time.time()
     duration = end_time - start_time
     
     print("\n" + "=" * 60)
-    print(f"🎉 PIPELINE COMPLETE")
-    print(f"⏱️  Total time: {duration/60:.1f} minutes")
-    print(f"📁 Results in: {args.output}")
+    print(f"[+] PIPELINE COMPLETE")
+    print(f"[*] Total time: {duration/60:.1f} minutes")
+    print(f"[*] Results in: {args.output}")
     print("=" * 60)
 
 
