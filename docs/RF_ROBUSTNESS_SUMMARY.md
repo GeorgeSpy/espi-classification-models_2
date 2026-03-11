@@ -1,4 +1,6 @@
-# RF Robustness Analysis - Executive Summary
+# Supplementary Technical Summary of Random Forest Generalization, Stability, and Error Analysis
+
+This document provides supplementary technical material supporting the Random Forest results reported in the thesis. While Section 4.5 of the thesis focuses on the comparative evaluation of Random Forest and CNN classifiers on the common ESPI dataset, the present note summarizes the additional evidence used to support the interpretation of the Pattern-only Random Forest model, including confidence intervals, cross-validation stability, error patterns, and out-of-domain validation behavior.
 
 ## Robustness Analysis for PatternOnly Random Forest
 
