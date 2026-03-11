@@ -45,9 +45,9 @@ The following headline metrics correspond to the thesis results reported for the
 
 Robustness results reported in the thesis include:
 
-- **LOBO accuracy:** 91.83% ± 8.90%
-- **LODO accuracy:** 66.31% ± 44.11%
-- **CNN MC-LOBO stress test:** 67.68% ± 2.20%
+- **LOBO accuracy:** 91.83% +/- 8.90%
+- **LODO accuracy:** 66.31% +/- 44.11%
+- **CNN MC-LOBO stress test:** 67.68% +/- 2.20%
 
 ## Data availability
 
@@ -65,19 +65,19 @@ The repository provides scripts for creating and validating the image labels CSV
 
 ```text
 .
-├── README.md
-├── REPRODUCE.md
-├── MODEL_CARD.md
-├── CITATION.cff
-├── requirements.txt
-├── docs/
-└── src/
-    ├── make_espi_labels_csv.py
-    ├── rf_train_complete.py
-    ├── rf_lodo_lobo.py
-    ├── train_espi_cnn_baselines.py
-    ├── train_espi_cnn_baselines_mclobo.py
-    └── create_rf_robustness_figures.py
+|-- README.md
+|-- REPRODUCE.md
+|-- MODEL_CARD.md
+|-- CITATION.cff
+|-- requirements.txt
+|-- docs/
+`-- src/
+    |-- make_espi_labels_csv.py
+    |-- rf_train_complete.py
+    |-- rf_lodo_lobo.py
+    |-- train_espi_cnn_baselines.py
+    |-- train_espi_cnn_baselines_mclobo.py
+    `-- create_rf_robustness_figures.py
 ```
 
 ## Quick start

@@ -1,4 +1,4 @@
-# Model Card — ESPI Classification Models
+# Model Card - ESPI Classification Models
 
 ## Overview
 
@@ -27,9 +27,9 @@ The task is supervised classification of vibration modes in bouzouki-family inst
 
 Additional robustness figures reported in the thesis:
 
-- LOBO: 91.83% ± 8.90%
-- LODO: 66.31% ± 44.11%
-- CNN MC-LOBO: 67.68% ± 2.20%
+- LOBO: 91.83% +/- 8.90%
+- LODO: 66.31% +/- 44.11%
+- CNN MC-LOBO: 67.68% +/- 2.20%
 
 ## Inputs
 
